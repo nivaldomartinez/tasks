@@ -1,0 +1,99 @@
+<div class="tasks-container">
+    <div class="top-bar">
+        <span class="title is-2">Your board</span>
+    </div>
+    <div class="board">
+        <!-- NEW -->
+        <div class="task-column animate__animated animate__fadeIn animate__faster">
+            <div class="column-title">
+                <div class="title-badge">
+                    <h5 class="subtitle is-5 m-0 has-text-weight-bold">New</h5>
+                    <span class="badge-total m-0 title is-6 animate__animated animate__fadeIn"
+                        *ngIf="newTasks.length">{{newTasks.length > 9 ? '9+' :
+                        newTasks.length}}</span>
+                </div>
+                <span (click)="createTask('new')" class="add-button cursor-pointer animate__animated animate__fadeIn"
+                    *ngIf="newTasks.length">
+                    <i class="fas fa-plus has-text-grey-light"></i>
+                </span>
+            </div>
+            <div class="add-task has-text-centered" *ngIf="!newTasks.length">
+                <small class="cursor-pointer animate__animated animate__fadeIn has-text-info"
+                    (click)="createTask('new')">+ Add new task</small>
+            </div>
+
+            <div class="tasks" cdkDropList (cdkDropListDropped)="drop($event, 'new')" [cdkDropListData]="newTasks"
+                [cdkDropListConnectedTo]="[inProgressList, doneList]" #newList="cdkDropList">
+                <div class="task notification is-light is-info" *ngFor="let task of newTasks" cdkDrag
+                    [cdkDragData]="task">
+                    <button class="delete" (click)="deleteTask(task)"></button>
+                    <strong>{{task.title}}</strong> <br>
+                    <span>{{task.subtitle}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- IN PROGRESS -->
+        <div class="task-column animate__animated animate__fadeIn animate__faster">
+            <div class="column-title">
+                <div class="title-badge">
+                    <h5 class="subtitle is-5 m-0 has-text-weight-bold">In Progress</h5>
+                    <span class="badge-total m-0 title is-6 animate__animated animate__fadeIn"
+                        *ngIf="inProgressTasks.length">{{inProgressTasks.length > 9 ? '9+' :
+                        inProgressTasks.length}}</span>
+                </div>
+                <span (click)="createTask('in progress')"
+                    class="add-button cursor-pointer animate__animated animate__fadeIn" *ngIf="inProgressTasks.length">
+                    <i class="fas fa-plus has-text-grey-light"></i>
+                </span>
+            </div>
+            <div class="add-task has-text-centered" *ngIf="!inProgressTasks.length">
+                <small class="cursor-pointer animate__animated animate__fadeIn has-text-info"
+                    (click)="createTask('in progress')">+ Add new task</small>
+            </div>
+
+            <div class="tasks" cdkDropList (cdkDropListDropped)="drop($event, 'in progress')"
+                [cdkDropListData]="inProgressTasks" [cdkDropListConnectedTo]="[newList, doneList]"
+                #inProgressList="cdkDropList">
+                <div class="task notification is-light is-info" *ngFor="let task of inProgressTasks" cdkDrag
+                    [cdkDragData]="task">
+                    <button class="delete" (click)="deleteTask(task)"></button>
+                    <strong>{{task.title}}</strong> <br>
+                    <span>{{task.subtitle}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DONE -->
+        <div class="task-column animate__animated animate__fadeIn animate__faster">
+            <div class="column-title">
+                <div class="title-badge">
+                    <h5 class="subtitle is-5 m-0 has-text-weight-bold">Done</h5>
+                    <span class="badge-total m-0 title is-6 animate__animated animate__fadeIn"
+                        *ngIf="doneTasks.length">{{doneTasks.length > 9 ? '9+' :
+                        doneTasks.length}}</span>
+                </div>
+                <span (click)="createTask('done')" class="add-button cursor-pointer animate__animated animate__fadeIn"
+                    *ngIf="doneTasks.length">
+                    <i class="fas fa-plus has-text-grey-light"></i>
+                </span>
+            </div>
+            <div class="add-task has-text-centered" *ngIf="!doneTasks.length">
+                <small class="cursor-pointer animate__animated animate__fadeIn has-text-info"
+                    (click)="createTask('done')">+ Add new task</small>
+            </div>
+
+            <div class="tasks" cdkDropList (cdkDropListDropped)="drop($event, 'done')" [cdkDropListData]="doneTasks"
+                [cdkDropListConnectedTo]="[newList, inProgressList]" #doneList="cdkDropList">
+                <div class="task notification is-light is-success" *ngFor="let task of doneTasks" cdkDrag
+                    [cdkDragData]="task">
+                    <button class="delete" (click)="deleteTask(task)"></button>
+                    <strong>{{task.title}}</strong> <br>
+                    <span>{{task.subtitle}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+</div>

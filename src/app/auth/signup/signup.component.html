@@ -1,0 +1,40 @@
+<div class="signup-container">
+    <div class="signup animate__animated animate__fadeIn">
+        <img src="../../assets/images/signup-pic.png" width="80%" alt="signup">
+        <div class="form">
+            <h1 class="title">Hello!</h1>
+            <h6 class="subtitle is-6">Start with a board, lists, and cards.</h6>
+            <form class="form" [formGroup]="signUpForm">
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input formControlName="name" class="input" type="text" placeholder="Name">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field mb-2">
+                    <p class="control has-icons-left has-icons-right">
+                        <input formControlName="email" class="input" type="email" placeholder="Email">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input formControlName="password" class="input" type="password" placeholder="Password">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <button class="button is-link is-light is-fullwidth" (click)="signUp()"
+                    [class.is-loading]="isLoading">Sign up</button>
+                <a class="button is-ghost is-fullwidth mt-2 is-small" routerLink="/login">Already registered?
+                    Log
+                    in</a>
+            </form>
+        </div>
+    </div>
+</div>

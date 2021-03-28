@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tasks-primestone": {
+      "hosting": {
+        "test-primestone": [
+          "tasks-primestone"
+        ]
+      }
+    }
+  }
+}

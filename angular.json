@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bulma/css/bulma.css",
+              "node_modules/animate.css/animate.min.css"
             ],
             "scripts": []
           },
@@ -122,8 +124,13 @@
               "devServerTarget": "test-primestone:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "test-primestone"
 }

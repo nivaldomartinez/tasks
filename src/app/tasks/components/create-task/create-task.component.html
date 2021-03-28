@@ -1,0 +1,32 @@
+<div class="modal is-active animate__animated animate__fadeIn animate__faster">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Create new task</p>
+            <button class="delete" aria-label="close" routerLink="/app/tasks"></button>
+        </header>
+        <section class="modal-card-body">
+            <form [formGroup]="taskForm">
+                <div class="field mb-2">
+                    <input formControlName="title" class="input" type="email" placeholder="Title">
+                </div>
+                <div class="field">
+                    <textarea formControlName="subtitle" class="textarea" placeholder="Description"></textarea>
+                </div>
+                <div class="field">
+                    <div class="select">
+                        <select formControlName="status">
+                            <option value="new">New</option>
+                            <option value="in progress">In Progress</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-dark" (click)="createTask()" [class.is-loading]="isLoading">Save changes</button>
+            <button class="button" routerLink="/app/tasks">Cancel</button>
+        </footer>
+    </div>
+</div>
